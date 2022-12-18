@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'cars.apps.CarsConfig',  # This app is for example use only
     'user_profile.apps.UserProfileConfig',
+    'video_game.apps.VideoGameConfig',
 ]
 
 MIDDLEWARE = [
