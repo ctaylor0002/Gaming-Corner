@@ -5,5 +5,5 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ['user', 'profile_picture', 'profile_description', 'collection']
+        fields = ['user', 'profile_picture', 'profile_description']
         depth = 1

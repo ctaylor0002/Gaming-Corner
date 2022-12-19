@@ -20,9 +20,9 @@ class UserCollection(models.Model):
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField()
+    profile_picture = models.ImageField(default='../images/base_profile_picture.jpg')
     profile_description = models.CharField(max_length=1000)
-    collection = models.ForeignKey(UserCollection, on_delete=models.CASCADE, default=None)
+    # collection = models.ForeignKey(UserCollection, on_delete=models.CASCADE, default=None)
     # user_profile_follewers = models.ManyToManyField(to='followers.UserFollowers')
 
 
