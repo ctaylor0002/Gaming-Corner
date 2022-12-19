@@ -8,7 +8,7 @@ from django.db import models
 #     model = models.CharField(max_length=100)
 #     year = models.IntegerField()
 
-class Video_Game(models.Model):
+class VideoGame(models.Model):
     rawg_video_game_id = models.CharField(max_length=25)
     video_game_title = models.CharField(max_length=50)
     video_game_image = models.CharField(max_length=255)
