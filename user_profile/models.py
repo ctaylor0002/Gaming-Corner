@@ -1,6 +1,7 @@
 from django.db import models
 from authentication.models import User
 from video_game.models import VideoGame
+# from followers.models import UserFollowers
 
 # Create your models here.
 
@@ -22,6 +23,6 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField()
     profile_description = models.CharField(max_length=1000)
     collection = models.ForeignKey(UserCollection, on_delete=models.CASCADE, default=None)
-    #follewers = models.ForeignKey(Followers, on_delete=models.CASCADE) (This will be used when I create the Followers App)
+    # user_profile_follewers = models.ManyToManyField(to='followers.UserFollowers')
 
 

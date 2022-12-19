@@ -7,5 +7,5 @@ from user_profile.models import UserProfile
 
 class UserFollowers(models.Model):
     main_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    follower = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    follower_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     
