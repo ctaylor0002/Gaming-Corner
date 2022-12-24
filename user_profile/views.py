@@ -30,9 +30,10 @@ def get_profile(request, pk):
     print(serializer.data)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-@api_view(['PUT'])
+@api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
 def profile_management(request, pk):
+    print(request)
     profile = get_object_or_404(UserProfile, pk=pk)
     serializer = UserProfileSerializer(profile, data=request.data)
     serializer.is_valid(raise_exception=True)
