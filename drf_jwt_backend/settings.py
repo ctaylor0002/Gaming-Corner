@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user_profile.apps.UserProfileConfig',
     'video_game.apps.VideoGameConfig',
     'followers.apps.FollowersConfig',
+    'user_collection.apps.UserCollectionConfig',
 ]
 
 MIDDLEWARE = [
