@@ -7,3 +7,4 @@ from video_game.models import VideoGame
 class UserCollection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     video_game = models.ForeignKey(VideoGame, on_delete=models.CASCADE)
+    completed = models.IntegerField(default=0) # 0 is false and 1 is true

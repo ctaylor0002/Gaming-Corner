@@ -10,7 +10,7 @@ from .serializers import VideoGameSerializer
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def add_to_collection(request):
+def add_video_game(request):
     print(request.user)
     serializer = VideoGameSerializer(data=request.data)
     if serializer.is_valid():
