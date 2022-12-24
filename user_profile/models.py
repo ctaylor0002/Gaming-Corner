@@ -14,14 +14,10 @@ from video_game.models import VideoGame
 #     model = models.CharField(max_length=100)
 #     year = models.IntegerField()
 
-class UserCollection(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    video_game = models.ForeignKey(VideoGame, on_delete=models.CASCADE)
-
 class UserProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(default='../images/base_profile_picture.jpg')
-    profile_description = models.CharField(max_length=1000)
+    profile_description = models.CharField(max_length=1000, default="Brand New User :)")
     # collection = models.ForeignKey(UserCollection, on_delete=models.CASCADE, default=None)
     # user_profile_follewers = models.ManyToManyField(to='followers.UserFollowers')
 
