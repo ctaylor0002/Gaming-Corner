@@ -25,3 +25,25 @@ def get_user_posts(request, user_id):
     posts = Post.objects.filter(user=user_id)
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+# Like or dislike the post
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def like_or_dislike_post(request, pk):
+    #Add a param for like or dislike
+    like_or_dislike_param = request.query_params.get('type')
+    post = get_object_or_404(Post, pk=pk)
+
+    if like_or_dislike_param == 'like':
+        post.likes = (post.likes) + 1
+    
+    elif like_or_dislike_param == 'dislike':
+        post.dislikes = (post.dislikes) + 1
+    
+    post.save()
+
+    serializer = PostSerializer(post)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+    

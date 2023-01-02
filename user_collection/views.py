@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view, permission_classes
 
 # Create your views here.
         
-@api_view(['GET','POST', 'PATCH', 'DELETE'])
+@api_view(['GET','POST'])
 @permission_classes([IsAuthenticated])
 def user_collection(request, user_id):
     if (request.method == 'GET'):
