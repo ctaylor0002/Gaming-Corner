@@ -22,9 +22,14 @@ def create_post(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_user_posts(request, user_id):
-    posts = Post.objects.filter(user=user_id)
+    posts= Post.objects.all()
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    # This is the way to get posts based on a specific user
+    # posts = Post.objects.filter(user=user_id)
+    # serializer = PostSerializer(posts, many=True)
+    # return Response(serializer.data, status=status.HTTP_200_OK)
 
 # Like or dislike the post
 @api_view(['PATCH'])
