@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
@@ -24,4 +27,4 @@ urlpatterns = [
     path('api/video_game/', include('video_game.urls')),
     path('api/collection/', include('user_collection.urls')),
     path('api/posts/', include('posts.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

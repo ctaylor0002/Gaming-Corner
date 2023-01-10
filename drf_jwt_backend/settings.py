@@ -156,6 +156,11 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=20),
 }
 
+import os
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'images')
+MEDIA_URL = '/images/'
+
 try:
     from drf_jwt_backend.local_settings import *
 except ImportError:
