@@ -27,4 +27,5 @@ urlpatterns = [
     path('api/video_game/', include('video_game.urls')),
     path('api/collection/', include('user_collection.urls')),
     path('api/posts/', include('posts.urls')),
+    path('api/followers/', include('followers.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
