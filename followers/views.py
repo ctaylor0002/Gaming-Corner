@@ -10,7 +10,14 @@ from rest_framework.decorators import api_view, permission_classes
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
+def following(request):
+    following = UserFollowers.objects.filter(main_user_id = request.user.id)
+    serializer = UserFollowerSerializer(following, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def followers(request):
-    followers = UserFollowers.objects.filter(main_user_id = request.user.id)
+    followers = UserFollowers.objects.filter(follower_user_id = request.user.id)
     serializer = UserFollowerSerializer(followers, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)

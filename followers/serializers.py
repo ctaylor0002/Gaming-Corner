@@ -5,4 +5,4 @@ class UserFollowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserFollowers
         fields = ['main_user', 'follower_user']
-        # depth = 1
+        depth = 1

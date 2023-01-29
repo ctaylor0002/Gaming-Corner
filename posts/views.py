@@ -4,6 +4,7 @@ from .models import Post
 from .serializers import PostSerializer
 from django.shortcuts import get_object_or_404
 
+
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 # Create your views here.
@@ -22,6 +23,7 @@ def create_post(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_user_posts(request, user_id):
+    print(request)
     posts= Post.objects.all()
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -31,19 +33,34 @@ def get_user_posts(request, user_id):
     # serializer = PostSerializer(posts, many=True)
     # return Response(serializer.data, status=status.HTTP_200_OK)
 
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def get_follower_posts(request, user_id):
+#     followers = UserFollowers.objects.filter(main_user_id = request.user.id)
+#     serializer = UserFollowerSerializer(followers, many=True)
+    
+    
+
 # Like or dislike the post
 @api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
 def like_or_dislike_post(request, pk):
     #Add a param for like or dislike
     like_or_dislike_param = request.query_params.get('type')
+    like_or_dislike_value = request.query_params.get('value')
     post = get_object_or_404(Post, pk=pk)
 
     if like_or_dislike_param == 'like':
-        post.likes = (post.likes) + 1
-    
+        if like_or_dislike_value == '1':    
+            post.likes = (post.likes) + 1
+        else:
+            post.likes = (post.likes) -1
+
     elif like_or_dislike_param == 'dislike':
-        post.dislikes = (post.dislikes) + 1
+        if like_or_dislike_value == '1':
+            post.dislikes = (post.dislikes) + 1
+        else:
+            post.dislikes = (post.dislikes) -1
     
     post.save()
 
