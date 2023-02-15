@@ -5,5 +5,5 @@ class UserCollectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserCollection
-        fields = ['user', 'video_game', 'completed']
+        fields = ['id', 'user', 'video_game', 'completed']
         depth = 1

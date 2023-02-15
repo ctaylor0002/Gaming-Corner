@@ -33,7 +33,7 @@ def get_profile(request, pk):
 @api_view(['PATCH'])
 @permission_classes([IsAuthenticated])
 def profile_management(request, pk):
-    print(request)
+    print(request.data)
     profile = get_object_or_404(UserProfile, pk=pk)
     serializer = UserProfileSerializer(profile, data=request.data)
     serializer.is_valid(raise_exception=True)

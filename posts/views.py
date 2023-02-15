@@ -68,4 +68,12 @@ def like_or_dislike_post(request, pk):
 
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+@api_view(['DELETE'])
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    post.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
     

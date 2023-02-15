@@ -20,7 +20,7 @@ def user_collection(request, user_id):
         serializer = UserCollectionSerializer(data=request.data)
         # print(request.data["video_game_id"])
         if serializer.is_valid():
-            serializer.save(user=request.user, video_game_id=request.data["video_game_id"])
+            serializer.save(user=request.user, video_game_id=request.data["id"])
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

@@ -5,5 +5,5 @@ class VideoGameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = VideoGame
-        fields = ['rawg_video_game_id', 'video_game_title', 'video_game_image']
+        fields = ['id', 'rawg_video_game_id', 'video_game_title', 'video_game_image']
         depth = 1

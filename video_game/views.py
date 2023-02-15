@@ -17,3 +17,10 @@ def add_video_game(request):
         serializer.save() # user=request.user
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_video_games(request):
+    video_games = VideoGame.objects.all()
+    serializer = VideoGameSerializer(video_games, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
