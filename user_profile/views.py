@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view, permission_classes
 
 # Create your views here.
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def create_profile(request):
 
     print(request.user)
@@ -23,7 +23,7 @@ def create_profile(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_profile(request, pk):
-    profile = get_object_or_404(UserProfile, pk=pk)
+    profile = get_object_or_404(UserProfile, user_id=pk)
     # profile = UserProfile.objects.filter(pk=pk)
     print(profile)
     serializer = UserProfileSerializer(profile)
@@ -39,4 +39,5 @@ def profile_management(request, pk):
     serializer.is_valid(raise_exception=True)
     serializer.save()
     return Response(serializer.data, status=status.HTTP_200_OK)
+
     
