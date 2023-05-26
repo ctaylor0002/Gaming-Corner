@@ -31,7 +31,7 @@ def get_users(request):
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_user_id(request, user_name):
+def get_user(request, user_name):
     user = User.objects.filter(username=user_name)
     print(user)
     serializer = UserSerializer(user, many=True)
