@@ -10,9 +10,9 @@ from rest_framework.decorators import api_view, permission_classes
 
 @api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def following(request):
+def following(request, user_id):
     if (request.method == 'GET'):
-        following = UserFollowers.objects.filter(main_user_id = request.user.id)
+        following = UserFollowers.objects.filter(main_user_id = user_id)
         serializer = UserFollowerSerializer(following, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif (request.method == 'POST'):
@@ -36,7 +36,7 @@ def delete_following(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def followers(request):
-    followers = UserFollowers.objects.filter(follower_user_id = request.user.id)
+def followers(request, user_id):
+    followers = UserFollowers.objects.filter(follower_user_id = user_id)
     serializer = UserFollowerSerializer(followers, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)

@@ -22,12 +22,23 @@ def create_post(request):
 # I need to make a way to get posts based on a user aswell
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_user_posts(request, user_id):
+def get_all_posts(request):
     print(request)
     posts= Post.objects.all()
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
     
+    
+
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_user_posts(request, user_id):
+    print(request)
+    posts = Post.objects.filter(user_id=user_id)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
     # This is the way to get posts based on a specific user
     # posts = Post.objects.filter(user=user_id)
     # serializer = PostSerializer(posts, many=True)
