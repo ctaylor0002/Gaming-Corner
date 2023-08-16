@@ -52,6 +52,7 @@ const HomePage = (props) => {
 
   useEffect(() => {
     fetchPosts();
+    console.log(`http://127.0.0.1:8000/${user.profile_picture}/`);
   }, []);
 
   return (
