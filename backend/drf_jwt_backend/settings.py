@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
-    'cars.apps.CarsConfig',  # This app is for example use only
     'user_profile.apps.UserProfileConfig',
     'video_game.apps.VideoGameConfig',
     'followers.apps.FollowersConfig',

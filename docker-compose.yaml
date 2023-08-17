@@ -1,0 +1,29 @@
+version: "3.1"
+services:
+  gaming-corner-database:
+    build: ./database
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+  gaming-corner-backend:
+    build: ./backend
+    ports:
+      - 8000:8000
+    restart: always
+    depends_on:
+      - "gaming-corner-database"
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+  gaming-corner-frontend:
+    build: ./frontend
+    ports:
+      - 3001:3000
+    restart: always
+    depends_on:
+      - "gaming-corner-backend"
+volumes:
+  db-data:
